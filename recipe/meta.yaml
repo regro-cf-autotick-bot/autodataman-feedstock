@@ -10,7 +10,7 @@ source:
   sha256: 3d858c6bdfe624d01e23c8f322bfb8ea83418322f9c1d7118047246cd6f902b8
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
   entry_points:
@@ -19,13 +19,15 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - requests
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - autodataman
   commands:
